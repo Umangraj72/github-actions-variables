@@ -1,15 +1,15 @@
-name: Workflow Demo
+name: Variables Workflow
 
-on: 
-  push
-
-env:
-  ACCESS_ID: ${{ secrets.ACCESS_ID }}
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  check-variable:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Echo ACCESS_ID
-      run: echo ${{ env.ACCESS_ID }}
+      - name: Print ACCESS_ID
+        env:
+          ACCESS_ID: ${{ secrets.ACCESS_ID }}
+        run: echo "Access ID is $ACCESS_ID"
